@@ -1,0 +1,59 @@
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+othello/build/
+othello/*.pbxuser
+othello/!default.pbxuser
+othello/*.mode1v3
+othello/!default.mode1v3
+othello/*.mode2v3
+othello/!default.mode2v3
+othello/*.perspectivev3
+othello/!default.perspectivev3
+othello/xcuserdata
+othello/*.xccheckout
+othello/*.moved-aside
+othello/DerivedData
+othello/*.hmap
+othello/*.ipa
+othello/*.xcuserstate
+
+# Android/IntelliJ
+#
+othello/build/
+othello/.idea
+othello/.gradle
+othello/local.properties
+othello/*.iml
+
+# node.js
+#
+othello/node_modules/
+othello/npm-debug.log
+othello/yarn-error.log
+
+# BUCK
+othello/buck-out/
+othello/\.buckd/
+othello/*.keystore
+othello/!debug.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+othello/*/fastlane/report.xml
+othello/*/fastlane/Preview.html
+othello/*/fastlane/screenshots
+
+# Bundle artifact
+othello/*.jsbundle
+
+# CocoaPods
+othello/ios/Pods/
