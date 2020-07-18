@@ -7,6 +7,11 @@ export default class Game extends Component {
   constructor(props) {
     super(props);
     this.notify;
+    this.self_dice_sum = 2;
+    this.oppo_dice_sum = 2;
+    this.state = {
+      side: 1,
+    };
   }
 
   render() {
@@ -19,15 +24,20 @@ export default class Game extends Component {
               alignItems: 'center',
               marginLeft: 20 * global.unit,
             }}>
-            <Image
-              source={require('../../assets/images/bullet.png')}
-              style={{width: 21 * global.unit, resizeMode: 'contain'}}
-            />
+            {this.state.side == -1 && (
+              <Image
+                source={require('../../assets/images/bullet.png')}
+                style={{
+                  width: 21 * global.unit,
+                  resizeMode: 'contain',
+                  marginRight: 10 * global.unit,
+                }}
+              />
+            )}
             <Text
               style={{
                 color: global.WhiteColor,
                 ...global.TitleFont,
-                marginLeft: 10 * global.unit,
               }}>
               CPU
             </Text>
@@ -52,7 +62,7 @@ export default class Game extends Component {
                 ...global.BodyTitleFont,
                 marginLeft: 10 * global.unit,
               }}>
-              12
+              {this.oppo_dice_sum}
             </Text>
           </View>
         </View>
@@ -60,6 +70,27 @@ export default class Game extends Component {
           <GameBoard
             show_message={(message) => {
               this.notify.showMessage(message);
+            }}
+            ref={(ref) => {
+              this.gameboard = ref;
+            }}
+            side={this.state.side}
+            change_side={(dices) => {
+              this.self_dice_sum = 0;
+              this.oppo_dice_sum = 0;
+              for (let column of dices) {
+                for (let element of column) {
+                  if (element == 1) {
+                    this.self_dice_sum += 1;
+                  }
+                  if (element == -1) {
+                    this.oppo_dice_sum += 1;
+                  }
+                }
+              }
+              this.setState({
+                side: this.state.side * -1,
+              });
             }}
           />
           <View
@@ -70,10 +101,12 @@ export default class Game extends Component {
               marginTop: 20 * global.unit,
               marginRight: 20 * global.unit,
             }}>
-            {/* <Image
-              source={require('../../assets/images/bullet.png')}
-              style={{width: 21 * global.unit, resizeMode: 'contain'}}
-            /> */}
+            {this.state.side == 1 && (
+              <Image
+                source={require('../../assets/images/bullet.png')}
+                style={{width: 21 * global.unit, resizeMode: 'contain'}}
+              />
+            )}
             <Text
               style={{
                 color: global.WhiteColor,
@@ -105,7 +138,7 @@ export default class Game extends Component {
                 ...global.BodyTitleFont,
                 marginLeft: 10 * global.unit,
               }}>
-              12
+              {this.self_dice_sum}
             </Text>
           </View>
         </View>

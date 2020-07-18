@@ -2,21 +2,27 @@ import React, {Component} from 'react';
 import {View, Animated, TouchableOpacity} from 'react-native';
 
 export default class FlipDice extends Component {
-  flip() {
+  flip(callback) {
     if (this.value >= 90) {
       Animated.spring(this.animatedValue, {
         toValue: 0,
         friction: 8,
         tension: 10,
+        duration: 100,
         useNativeDriver: true,
-      }).start();
+      }).start(() => {
+        callback();
+      });
     } else {
       Animated.spring(this.animatedValue, {
         toValue: 180,
         friction: 8,
         tension: 10,
+        duration: 100,
         useNativeDriver: true,
-      }).start();
+      }).start(() => {
+        callback();
+      });
     }
   }
 

@@ -12,7 +12,7 @@ export default class Notify extends Component {
   }
 
   componentDidMount() {
-    this.showMessage('Illegal Move');
+    // this.showMessage('Illegal Move');
   }
 
   showMessage(message) {
